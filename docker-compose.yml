@@ -1,0 +1,28 @@
+version: "3.9"
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+      - "4571:4571"
+    environment:
+      - SERVICES=dynamodb
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+  redis:
+    image: bitnami/redis:6.2.6
+    ports:
+      - "6379:6379"
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      #- REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+      - REDIS_AOF_ENABLED=no
+    networks:
+      - app-tier

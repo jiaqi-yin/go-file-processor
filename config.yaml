@@ -1,0 +1,11 @@
+aws:
+  region: local
+  endpoint: http://localhost:4566
+  profile: localstack
+  dynamodb:
+    table: Users
+redis:
+  host: "127.0.0.1"
+  port: "6379"
+  password: ""
+  db: 0
