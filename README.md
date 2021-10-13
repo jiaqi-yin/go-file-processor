@@ -32,7 +32,8 @@ http://localhost:4566/health?reload
 Start a Redis cli to connect to the Redis server in docker container.
 
 ```
-docker run -it --rm \
-> --network go-file-processor_app-tier \
-> bitnami/redis:6.2.6 redis-cli -h go-file-processor_redis_1
+docker run -it --rm --network go-file-processor_app-tier bitnami/redis:6.2.6 redis-cli -h go-file-processor_redis_1
 ```
+
+Generate fake data in a file
+- Use [this script](https://gist.github.com/jiaqi-yin/8485bcb41253a779fe684cd17b89af07) to generate fake data in a file for testing this application.
